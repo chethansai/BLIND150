@@ -23,4 +23,5 @@ def anagram():
       print(i)
    print(ss,tt)
    return ss == tt
+
 print(anagram())
