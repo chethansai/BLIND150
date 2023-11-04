@@ -65,8 +65,7 @@ class BinarySearchTree:
       if current is None:
          return 0
 
-      res =  1 + max(self.maxdepthdfs(current.left), self.maxdepthdfs(current.right))
-      return res
+      res =  1 + max(self.maxdepthdfs(  res))
    def maxdepthbfs(self):
       a = []
       if not self.root:
