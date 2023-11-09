@@ -71,6 +71,7 @@ def lca( r, p, q):
       r = r.left
    if (r.data < p.data and r.data > q.data):
       return r.data
+
    if (r.data > p.data and r.data < q.data):
       return r.data
 
