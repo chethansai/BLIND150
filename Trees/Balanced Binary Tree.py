@@ -91,6 +91,16 @@ class BinarySearchTree:
       print(ansb)
       return [ansb,1 + max(self.maxdepthdfs(current.left), self.maxdepthdfs(current.right))]
 
+# def lsum(c):
+#
+#    if not c:
+#       return maxi
+#    maxi = max(maxi, maxi + c.data)
+#    lsum(c.left)
+#    lsum(c.right)
+#    print(maxi)
+#    return max(maxi,c.data + lsum(c.left) + lsum(c.right))
+#
 
 
 
@@ -122,3 +132,22 @@ print(tree.height(tree.root))
 
 #n time compexity
 print(tree.heightn(tree.root))
+maxi = 0
+# print(lsum(tree.root,tree.root.data))
+
+ans =   tree.root.data
+
+
+def lsum(c):
+   global ans
+   if not c :
+      return 0
+
+   leftsum = lsum(c.left)
+   rightsum = lsum(c.right)
+
+   ans = max(ans, c.data + leftsum + rightsum, c.data + leftsum, c.data + rightsum)
+   return c.data + max (leftsum,rightsum)
+
+
+print(lsum(tree.root))
