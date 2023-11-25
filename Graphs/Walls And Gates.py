@@ -32,4 +32,5 @@ while q:
       addRooms(r, c + 1)
       addRooms(r, c - 1)
    dist += 1
+
 print(rooms)
