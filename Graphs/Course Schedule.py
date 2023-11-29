@@ -11,7 +11,6 @@ def dfs(g):
    visit.remove(g)
 
    graph[g] = []
-   return True
 
 def ans():
    for f, t in e:
