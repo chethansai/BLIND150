@@ -25,9 +25,6 @@ def bfs():
    print(length)
 
 
-
-
-# def start():
 beginWord = "hit"
 endWord = "cog"
 wordList = ["hot","dot","dog","lot","log"]
