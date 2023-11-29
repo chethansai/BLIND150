@@ -13,13 +13,6 @@ def dfs(c, p):
       if not dfs(i,c):
          return False
    return True
-
-
-
-
-
-
-
 n = 3
 edges = [[0, 1], [1, 2]]
 graph = {}
