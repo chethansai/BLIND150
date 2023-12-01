@@ -12,15 +12,6 @@ def closest(p, k):
       k = k - 1
 
    print(heapq.heappop(heap)[1:])
-
-
-
-
-
-
-
-
-
 def codejudge():
    p = [[1,3],[-2,2]]
    k = 1
