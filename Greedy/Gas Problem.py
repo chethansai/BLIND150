@@ -18,7 +18,8 @@ def gas(g, c):
    total = 0
    ans = 0
    for d in range(0,len(diff)):
-
+      if(diff[d]< 0):
+         ans = d + 1
       total += diff[d]
       if(total < 0):
          total = 0
