@@ -31,6 +31,7 @@ def straight(h,g):
             if(heap[0] != i):
                return False
 
+
             heapq.heappop(i)
 
 
