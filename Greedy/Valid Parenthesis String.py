@@ -18,7 +18,6 @@ def parenthesis(s):
          l_min = 0
       if(l_max < 0):
          return False
-
    if(l_min == 0):
       return True
    else:
