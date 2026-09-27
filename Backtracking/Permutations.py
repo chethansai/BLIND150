@@ -1,21 +1,21 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        ans, sol = [], []
 
-def answer1():
-   ans = []
-   n = [1, 2, 3]
+        def backtrack():
+            if len(sol) == n:
+                ans.append(sol[:])
+                return
 
-   def backtrack(n, path):
-      if len(path)==2:
-         ans.append(path.copy())
-         return
+            for x in nums:
+                if x not in sol:
+                    sol.append(x)
+                    backtrack()
+                    sol.pop()
 
-      for i in range(len(n)):
-         path.append(n[i])
-         changed_n = n[:i] + n[i + 1:]
-         backtrack(changed_n, path)
-         path.pop()
+        backtrack()
+        return ans
 
-   backtrack(n, [])
-   return ans
-
-
-print(answer1())
+# Time Complexity: O(n!)
+# Space Complexity: O(n)
