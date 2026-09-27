@@ -1,21 +1,19 @@
-import collections
-
-
-def rep():
-    s = "AABABBA"
-    k = 1
-    d = collections.defaultdict(int)
-    m = 0
-    start = 0
-    a = 0
-    for i in range(0, len(s)):
-        d[s[i]] += 1
-        m = max(m,d[s[i]])
-        if (i - start + 1) - m <= k:
-            a = max(a, i - start + 1)
-        else:
-            d[s[start]] -=1
-            start += 1
-
-    print(a)
-rep()
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        count = {}  # char -> frequency in current window
+        left = 0
+        max_freq = 0
+        max_len = 0
+        
+        for right in range(len(s)):
+            count[s[right]] = count.get(s[right], 0) + 1
+            max_freq = max(max_freq, count[s[right]])
+            
+            window_len = right - left + 1
+            if window_len - max_freq > k:
+                count[s[left]] -= 1
+                left += 1
+            
+            max_len = max(max_len, right - left + 1)
+        
+        return max_len
