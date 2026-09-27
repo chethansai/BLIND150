@@ -1,0 +1,30 @@
+from typing import List
+
+def generateParenthesis(n: int) -> List[str]:
+    ans = []
+    tempans = []
+
+    def backtrack(open_count: int, close_count: int):
+        if len(tempans) == 2 * n:
+            ans.append("".join(tempans))
+            return
+
+        # CHOOSE '(' if we still have opens available
+        if open_count < n:
+            tempans.append("(")
+            backtrack(open_count + 1, close_count)
+            tempans.pop()
+
+        # CHOOSE ')' only if it won't outnumber the opens so far
+        if close_count < open_count:
+            tempans.append(")")
+            backtrack(open_count, close_count + 1)
+            tempans.pop()
+
+    backtrack(0, 0)
+    return ans
+
+
+if __name__ == "__main__":
+    print(generateParenthesis(3))
+    # ['((()))', '(()())', '(())()', '()(())', '()()()']
