@@ -62,14 +62,13 @@ class BinarySearchTree:
          current_node = current_node.left
       return current_node.data
 def sametree(tree1, tree2):
+    if not tree1 and not tree2:
+        return True
 
-   if(not tree1 and not tree2):
-      return True
-
-   if(tree1 and tree2 and tree1.data and tree2.data):
-      return sametree(tree1.left, tree2.left) and sametree(tree1.right, tree2.right)
-   else:
-      return False
+    if tree1 and tree2 and tree1.data == tree2.data:
+        return sametree(tree1.left, tree2.left) and sametree(tree1.right, tree2.right)
+    else:
+        return False
 
 
 r = []
