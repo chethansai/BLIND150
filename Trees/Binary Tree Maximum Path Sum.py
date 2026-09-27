@@ -62,6 +62,27 @@ class BinarySearchTree:
          current_node = current_node.left
       return current_node.data
 
+class Solution:
+    def maxPathSum(self, root):
+        self.max_sum = float('-inf')
+
+        def helper(node):
+            if node is None:
+                return 0
+
+            # best sum from left/right child, ignoring negative contributions
+            left = max(helper(node.left), 0)
+            right = max(helper(node.right), 0)
+
+            # candidate path THROUGH this node (using both sides) — only for updating global max
+            current_path_sum = node.data + left + right
+            self.max_sum = max(self.max_sum, current_path_sum)
+
+            # what we RETURN to parent: can only extend one side
+            return node.data + max(left, right)
+
+        helper(root)
+        return self.max_sum
 
 r = []
 
