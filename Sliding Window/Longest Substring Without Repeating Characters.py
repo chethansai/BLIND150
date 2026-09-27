@@ -1,14 +1,13 @@
-def sub():
-   s = "abcabcbb"
-   d = dict()
-   a = 0
-   start = 0
-   for i in range(0,len(s)):
-      if(s[i] in d and start <= d[s[i]]):
-         start = d[s[i]] +1
-      else:
-
-         a = max(a,i - start + 1 )
-      d[s[i]] = i
-   print(a)
-sub()
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_index = {}  # char -> last seen index
+        left = 0
+        max_len = 0
+        
+        for right, char in enumerate(s):
+            if char in char_index and char_index[char] >= left:
+                left = char_index[char] + 1
+            char_index[char] = right
+            max_len = max(max_len, right - left + 1)
+        
+        return max_len
