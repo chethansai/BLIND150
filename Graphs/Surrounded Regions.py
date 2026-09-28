@@ -1,38 +1,23 @@
-def answer():
-   board = [["X", "X", "X", "X"], ["X", "O", "O", "X"], ["X", "X", "O", "X"], ["X", "O", "X", "X"]]
-   def dfs(r, c):
-      if(r < 0 or c < 0 or
-         r >= len(board) or c >= len(board) or
-         board[r][c] == "X"
-        ):
-         return
-      board[r][c] = "T"
-      directions = [(1, 0), (0, -1), (0, 1), (0, -1)]
-      for row_moment,column_moment in directions:
-         dfs(r + row_moment, c + column_moment)
+from collections import deque
 
-   #1. capture unsurrounded. DFS Change it to T.
-   for r in range(len(board)):
-      for c in range(len(board[0])):
-         if (r == 0 or r == len(board) - 1 or
-             c == 0 or c == len(board) - 1 or
-             board[r][c] == "X"):
-            dfs(r, c)
+def solve(board):
+    rows, cols = len(board), len(board[0])
+    q = deque()
 
-   #2. capture surrounded.
-   for r in range(len(board)):
-      for c in range(len(board[0])):
-         if(board[r][c] == 'O'):
-            board[r][c] = 'X'
-   #3. capture unsurrounded T to 0
-   for r in range(len(board)):
-      for c in range(len(board[0])):
-         if(board[r][c] == 'T'):
-            board[r][c] = 'O'
-   print(board)
+    for r in range(rows):
+        for c in range(cols):
+            if (r in (0, rows - 1) or c in (0, cols - 1)) and board[r][c] == 'O':
+                board[r][c] = 'S'
+                q.append((r, c))
 
+    while q:
+        r, c = q.popleft()
+        for dr, dc in ((1,0),(-1,0),(0,1),(0,-1)):
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < rows and 0 <= nc < cols and board[nr][nc] == 'O':
+                board[nr][nc] = 'S'
+                q.append((nr, nc))
 
-
-
-
-answer()
+    for r in range(rows):
+        for c in range(cols):
+            board[r][c] = 'O' if board[r][c] == 'S' else ('X' if board[r][c] == 'O' else board[r][c])
