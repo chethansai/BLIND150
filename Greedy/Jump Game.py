@@ -1,17 +1,19 @@
-def jump(nums):
+from typing import List
 
-   goal = len(nums) - 1
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        n = len(nums)
+        goal = n - 1
 
-   for i in range(len(nums) - 1, -1, -1):
-      # print(i)
-      print(nums[i])
-      if ((i + nums[i])>= goal):
-         goal = i
-   if goal == 0:
-      return True
-   else:
-      return False
-def codejudge():
-   nums = [2,3,1,1,4]
-   return (jump(nums))
-print(codejudge())
+        for i in range(n - 2, -1, -1):
+            if i + nums[i] >= goal:
+                goal = i
+
+        return goal == 0
+
+
+# Test
+s = Solution()
+print(s.canJump([2, 3, 1, 1, 4]))  # True
+print(s.canJump([3, 2, 1, 0, 4]))  # False
+print(s.canJump([0]))              # True
