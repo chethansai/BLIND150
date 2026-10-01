@@ -1,20 +1,26 @@
-def a():
-   n = [3,4,5,1,2]
-   i = 0
-   j = len(n)-1
-   a = n[0]
-   while(i<j):
-      if(n[i]<n[j]):
-         a =min(a,n[i])
-         print(a)
-         return
-      m = (i + j)//2
-      #left portion
-      if(n[i]<=n[m]):
-         i= m+1
-      else:
-         j= m+1
-   print(n[i])
+def find_minimum(nums):
+    left = 0
+    right = len(nums) - 1
+
+    while left < right:
+
+        # Already sorted
+        if nums[left] < nums[right]:
+            return nums[left]
+
+        mid = (left + right) // 2
+
+        # Mid is in the left sorted portion
+        if nums[mid] >= nums[left]:
+            left = mid + 1
+
+        # Mid is in the right rotated portion
+        else:
+            right = mid
+
+    return nums[left]
 
 
-a()
+nums = [3, 4, 5, 1, 2]
+
+print(find_minimum(nums))
